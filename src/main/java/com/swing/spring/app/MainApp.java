@@ -10,14 +10,13 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.swing.spring.element.ServiceRemote;
 
 @SuppressWarnings("serial")
 public class MainApp extends JFrame {
-
-	private ServiceRemote serviceRemote;
 	
 	public static void main(String[] arg) {
 		new MainApp().drawShapes();
@@ -28,17 +27,18 @@ public class MainApp extends JFrame {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 				SpringConfiguration.class);
 
+		System.out.println("MainApp - drawShapes ..!");
+		
 		// Consultar y dibujar elementos graficos
 		ServiceRemote service = ctx.getBean(ServiceRemote.class);
 
-		@SuppressWarnings("serial")
+		System.out.println("service 1: " + service);		
+		
 		JPanel panel = new JPanel() {
 			@Override
 			public void paintComponent(Graphics g) {
 				Graphics2D g2D = (Graphics2D) g;
-				List<Shape> shapes = new ArrayList<>();
-
-
+				
 				// Lista de Benas creados
 				for (String name : ctx.getBeanDefinitionNames()) {
 					System.out.println(name);
@@ -62,4 +62,5 @@ public class MainApp extends JFrame {
 	
 		this.getContentPane().add(panel);
 	}
+	
 }

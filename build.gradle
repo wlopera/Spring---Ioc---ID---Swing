@@ -3,12 +3,14 @@ plugins {
 }
 
 dependencies {
- 	compile group: 'org.springframework', name: 'spring-context', version: '5.1.0.RELEASE'  
+ 	 compile group: 'org.springframework', name: 'spring-context', version: '5.1.0.RELEASE'  
 	 
  //	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.0.RELEASE'
  
 }
 
 repositories {
-    jcenter()
+	mavenCentral()
+	// and optionally...
+	maven { url "http://repo.spring.io/release" }
 }
